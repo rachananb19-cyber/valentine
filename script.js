@@ -1,3 +1,5 @@
+const correctPassword = "0414"; // CHANGE THIS
+
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const response = document.getElementById("response");
@@ -129,6 +131,30 @@ function startFloatingPhotos() {
 
   photoInterval = setInterval(createFloatingPhoto, 2500);
 }
+const unlockBtn = document.getElementById("unlockBtn");
+const passwordInput = document.getElementById("passwordInput");
+const passwordScreen = document.getElementById("passwordScreen");
+const mainContent = document.getElementById("mainContent");
+const passwordError = document.getElementById("passwordError");
+
+unlockBtn.addEventListener("click", checkPassword);
+
+passwordInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    checkPassword();
+  }
+});
+
+function checkPassword() {
+  if (passwordInput.value === correctPassword) {
+    passwordScreen.style.display = "none";
+    mainContent.style.display = "block";
+  } else {
+    passwordError.textContent = "❌ Wrong password… try again cutie 💕";
+  }
+}
+
+
 
 
 
