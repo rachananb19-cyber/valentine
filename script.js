@@ -131,28 +131,34 @@ function startFloatingPhotos() {
 
   photoInterval = setInterval(createFloatingPhoto, 2500);
 }
-const unlockBtn = document.getElementById("unlockBtn");
-const passwordInput = document.getElementById("passwordInput");
-const passwordScreen = document.getElementById("passwordScreen");
-const mainContent = document.getElementById("mainContent");
-const passwordError = document.getElementById("passwordError");
+document.addEventListener("DOMContentLoaded", () => {
 
-unlockBtn.addEventListener("click", checkPassword);
+  const unlockBtn = document.getElementById("unlockBtn");
+  const passwordInput = document.getElementById("passwordInput");
+  const passwordScreen = document.getElementById("passwordScreen");
+  const mainContent = document.getElementById("mainContent");
+  const passwordError = document.getElementById("passwordError");
 
-passwordInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    checkPassword();
+  function checkPassword() {
+    if (passwordInput.value === correctPassword) {
+      passwordScreen.style.display = "none";
+      mainContent.style.display = "block";
+    } else {
+      passwordError.textContent = "❌ Wrong password… try again cutie 💕";
+    }
   }
+
+  unlockBtn.addEventListener("click", checkPassword);
+
+  passwordInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      checkPassword();
+    }
+  });
+
 });
 
-function checkPassword() {
-  if (passwordInput.value === correctPassword) {
-    passwordScreen.style.display = "none";
-    mainContent.style.display = "block";
-  } else {
-    passwordError.textContent = "❌ Wrong password… try again cutie 💕";
-  }
-}
+
 
 
 
